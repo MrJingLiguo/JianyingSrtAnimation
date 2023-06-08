@@ -1,0 +1,3 @@
+effect_path=C:\\Users\admin\AppData\Local\JianyingPro\User Data\Cache\effect
+project_path=D:\JianyingPro\JianyingPro Drafts\6月7日
+duration=500000
