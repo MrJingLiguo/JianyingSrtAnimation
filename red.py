@@ -140,7 +140,6 @@ def main():
                         ]
             # 获取符合条件的数据
             data_list = get_effect_data(effect_path, effect_list, effects, duration)
-
             draft_content = os.path.join(project, 'draft_content.json')
             with open(draft_content, 'r', encoding='utf-8') as file:
                 json_data = json.load(file)
@@ -148,16 +147,15 @@ def main():
                 chosen_data = []
                 prev_chosen = None
                 for index in range(len(material_animations)):
-                    if data_list:
-                        available_data = [data for data in data_list if data != prev_chosen]
-                        if available_data:
-                            chosen = random.choice(available_data)
-                        else:
+                    chosen = random.choice(data_list)
+                    if chosen == prev_chosen:
+                        while True:
                             chosen = random.choice(data_list)
-                        material_animations[index]['animations'] = chosen
-                        chosen_data.append(chosen)
-                        prev_chosen = chosen
-                        data_list.remove(chosen)
+                            if chosen != prev_chosen:
+                                break
+                               
+                    material_animations[index]['animations'] = chosen
+                    prev_chosen = chosen
 
             with open(draft_content, 'w', encoding='utf-8') as file:
                 json.dump(json_data, file, indent=4, sort_keys=True)
