@@ -75,6 +75,11 @@ def main():
             config_data = parse_config_file(config_file_path)
             effect_path = config_data.get('effect_path')
             project = config_data.get('project_path')
+            project_name=''
+            while not project_name:
+                project_name=input('请输入需要添加动画项目名称:')
+            
+            project=os.path.join(project,project_name)
             duration = int(config_data.get('duration'))
             effects=[
                             "3138860",
